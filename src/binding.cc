@@ -518,8 +518,8 @@ NAN_METHOD(ReinterpretBuffer) {
     return Nan::ThrowError("reinterpret: Cannot reinterpret from NULL pointer");
   }
 
-  size_t size = info[1]->Uint32Value();
-
+  size_t size = Nan::To<uint32_t>(info[1]).FromJust();
+  
   info.GetReturnValue().Set(WrapPointer(ptr, size));
 }
 
@@ -547,7 +547,8 @@ NAN_METHOD(ReinterpretBufferUntilZeros) {
     return Nan::ThrowError("reinterpretUntilZeros: Cannot reinterpret from NULL pointer");
   }
 
-  uint32_t numZeros = info[1]->Uint32Value();
+  uint32_t numZeros = Nan::To<uint32_t>(info[1]).FromJust();
+  
   uint32_t i = 0;
   size_t size = 0;
   bool end = false;
