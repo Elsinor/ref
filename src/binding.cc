@@ -613,7 +613,7 @@ NAN_MODULE_INIT(init) {
   Local<Object> amap = Nan::New<v8::Object>();
 #define SET_ALIGNOF(name, type) \
   struct s_##name { type a; }; \
-  amap->Set(Nan::New<v8::String>( #name ).ToLocalChecked(), Nan::New<v8::Uint32>(static_cast<uint32_t>(__alignof__(struct s_##name))));
+  Nan::Set(amap, Nan::New<v8::String>( #name ).ToLocalChecked(), Nan::New<v8::Uint32>(static_cast<uint32_t>(__alignof__(struct s_##name))));
   SET_ALIGNOF(int8, int8_t);
   SET_ALIGNOF(uint8, uint8_t);
   SET_ALIGNOF(int16, int16_t);
