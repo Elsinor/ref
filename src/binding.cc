@@ -643,8 +643,8 @@ NAN_MODULE_INIT(init) {
   // exports
   Nan::Set(target, Nan::New<v8::String>("sizeof").ToLocalChecked(), smap);
   Nan::Set(target, Nan::New<v8::String>("alignof").ToLocalChecked(), amap);
-  Nan::ForceSet(target, Nan::New<v8::String>("endianness").ToLocalChecked(), Nan::New<v8::String>(CheckEndianness()).ToLocalChecked(), static_cast<PropertyAttribute>(ReadOnly|DontDelete));
-  Nan::ForceSet(target, Nan::New<v8::String>("NULL").ToLocalChecked(), WrapNullPointer(), static_cast<PropertyAttribute>(ReadOnly|DontDelete));
+  Nan::DefineOwnProperty(target, Nan::New<v8::String>("endianness").ToLocalChecked(), Nan::New<v8::String>(CheckEndianness()).ToLocalChecked(), static_cast<PropertyAttribute>(ReadOnly|DontDelete));
+  Nan::DefineOwnProperty(target, Nan::New<v8::String>("NULL").ToLocalChecked(), WrapNullPointer(), static_cast<PropertyAttribute>(ReadOnly|DontDelete));
   Nan::SetMethod(target, "address", Address);
   Nan::SetMethod(target, "hexAddress", HexAddress);
   Nan::SetMethod(target, "isNull", IsNull);
